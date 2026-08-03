@@ -1,8 +1,3 @@
-// This driver should :
-// The driver must invoke the core algorithm and produce the required result and timing information.
-// The driver should be kept separate from the core algorithm implementation wherever practical.
-// The driver must support execution of one selected test file and/or all test files belonging to that assignment.
-
 
 int main () {
     /* 
