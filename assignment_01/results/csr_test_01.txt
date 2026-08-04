@@ -1,0 +1,10 @@
+Test File: csr_test_01.txt
+Input Type: Unweighted
+Vertices: 5
+Edges: 6
+row_ptr size: 6
+col_idx size: 6
+values size: 0
+Actual CSR Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/csr_test_01_csr.txt"
+CSR Conversion Time: 0.002488 ms
+Status: PASS

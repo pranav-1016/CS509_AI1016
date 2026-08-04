@@ -27,3 +27,22 @@
 | gemm_test_24.txt | 64x64 and 64x64 | -- | 0.052466 ms | 0.023451 ms | 32 | PASS |
 | gemm_test_25.txt | 128x128 and 128x96 | -- | 0.173444 ms | 0.106387 ms | 32 | PASS |
 | gemm_test_26.txt | 4x5 and 5x4 | -- | 0.002841 ms | 0.003262 ms | 32 | PASS |
+
+<!-- CSR_RESULTS_START -->
+
+## CSR Results
+
+| Test File | Input Type | V | E | row_ptr | col_idx | values | CSR Time | Status |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| csr_test_01.txt | Unweighted | 10 | 30 | 11 | 30 | 0 | 0.004093 ms | PASS |
+| csr_test_02.txt | Weighted | 10 | 30 | 11 | 30 | 30 | 0.010419 ms | PASS |
+| csr_test_03.txt | Unweighted | 100 | 300 | 101 | 300 | 0 | 0.021686 ms | PASS |
+| csr_test_04.txt | Weighted | 100 | 300 | 101 | 300 | 300 | 0.010636 ms | PASS |
+| csr_test_05.txt | Unweighted | 10000 | 30000 | 10001 | 30000 | 0 | 1.021200 ms | PASS |
+| csr_test_06.txt | Weighted | 10000 | 30000 | 10001 | 30000 | 30000 | 0.740378 ms | PASS |
+| csr_test_07.txt | Unweighted | 50000 | 150000 | 50001 | 150000 | 0 | 3.228232 ms | PASS |
+| csr_test_08.txt | Weighted | 50000 | 150000 | 50001 | 150000 | 150000 | 3.639234 ms | PASS |
+| csr_test_09.txt | Unweighted | 100000 | 300000 | 100001 | 300000 | 0 | 7.414765 ms | PASS |
+| csr_test_10.txt | Weighted | 100000 | 300000 | 100001 | 300000 | 300000 | 7.161192 ms | PASS |
+
+<!-- CSR_RESULTS_END -->

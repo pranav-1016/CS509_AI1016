@@ -1,0 +1,6 @@
+# CSR Test Results
+
+| Test File | Input Type | V | E | row_ptr | col_idx | values | CSR Time | Status |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| csr_test_01.txt | Unweighted | 5 | 6 | 6 | 6 | 0 | 0.002488 ms | PASS |
+| csr_test_02.txt | Weighted | 5 | 6 | 6 | 6 | 6 | 0.007157 ms | PASS |
