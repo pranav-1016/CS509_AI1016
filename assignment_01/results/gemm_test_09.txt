@@ -1,0 +1,9 @@
+Test File: gemm_test_09.txt
+Input Type / Size: 1000x1000 and 1000x1000
+Expected Output: --
+Actual Simple: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_09_simple.txt"
+Actual Blocking: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_09_blocked.txt"
+Simple Time: 4384.652222 ms
+Blocking Time: 5344.884920 ms
+Block Size: 32
+Status: PASS
