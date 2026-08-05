@@ -3,7 +3,7 @@ Input Type / Size: 64x64 and 64x64
 Expected Output: --
 Actual Simple: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_24_simple.txt"
 Actual Blocking: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_24_blocked.txt"
-Simple Time: 0.052466 ms
-Blocking Time: 0.023451 ms
-Block Size: 32
+Simple Time: 0.047526 ms
+Blocking Time: 0.015448 ms
+Block Size: 128
 Status: PASS
