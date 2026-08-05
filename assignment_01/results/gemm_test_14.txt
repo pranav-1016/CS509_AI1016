@@ -3,7 +3,7 @@ Input Type / Size: 400x200 and 200x500
 Expected Output: --
 Actual Simple: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_14_simple.txt"
 Actual Blocking: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_01/actual/gemm_test_14_blocked.txt"
-Simple Time: 151.758683 ms
-Blocking Time: 213.889643 ms
-Block Size: 32
+Simple Time: 190.750557 ms
+Blocking Time: 268.912594 ms
+Block Size: 128
 Status: PASS
