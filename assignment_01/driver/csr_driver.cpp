@@ -251,6 +251,8 @@ int csr_driver_main(int argc, char* argv[]) {
     }
 
     fs::path root = fs::current_path();
+    root = root.parent_path();
+    root = root / "assignment_01";
     std::vector<fs::path> tests;
 
     for (int i = 1; i < argc; ++i) {

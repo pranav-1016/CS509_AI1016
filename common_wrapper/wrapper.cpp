@@ -38,7 +38,8 @@ int runAssignment(const fs::path &root, const Assignment& assignment) {
     }
 
     // Find asssignment driver
-    fs::path driver = assignment_path / assignment.driver;
+    fs::path driver = assignment_path / "bin" / assignment.driver;
+    cout << "This is the driver path : " << driver << endl;
 
     if (!fs::exists(driver)) {
         cerr << "Assignment driver not found: " << driver << endl;

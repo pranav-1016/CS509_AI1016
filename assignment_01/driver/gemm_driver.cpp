@@ -151,6 +151,9 @@ int gemm_driver_main(int argc, char* argv[])
     }
 
     fs::path root = fs::current_path();
+    root = root.parent_path();
+    root = root / "assignment_01";
+    // fs::path root = 
     std::vector<fs::path> tests;
     int block = 32;
 

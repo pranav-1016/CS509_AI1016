@@ -14,7 +14,7 @@ inline const std::vector<Assignment> assignments = {
     {
         "Assignment 01 - GEMM and CSR",
         "assignment_01",
-        "assignment_01_driver"
+        "driver"
     },
 };
 
