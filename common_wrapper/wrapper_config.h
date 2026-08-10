@@ -16,6 +16,12 @@ inline const std::vector<Assignment> assignments = {
         "assignment_01",
         "driver"
     },
+    {
+        "Assignment 02 - Bellman-Ford and Floyd-Warshall",
+        "assignment_02",
+        "driver"
+    },
+    
 };
 
 #endif

@@ -1,0 +1,8 @@
+Test File: bf_test_case_01.txt
+Vertices: 5
+Edges: 10
+Source: 0
+Negative Cycle: No
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_02/actual/bellman_ford/bf_test_case_01_actual.txt"
+Execution Time: 0.000721 ms
+Status: PASS

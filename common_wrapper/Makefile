@@ -10,8 +10,7 @@ SRC = wrapper.cpp
 HEADERS = \
 	wrapper_config.h \
 	assignment_wrapper.h \
-	assignment_config.h \
-	utils.h
+	assignment_config.h
 
 
 .PHONY: all clean
