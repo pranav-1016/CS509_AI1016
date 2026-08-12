@@ -1,0 +1,7 @@
+Test File: fw_disconnected.txt
+Vertices: 5
+Edges: 8
+Negative Cycle: No
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_02/actual/floyd_warshall/fw_disconnected_actual.txt"
+Execution Time: 0.003194 ms
+Status: PASS

@@ -11,6 +11,6 @@ struct Floyd_Warshall {
     bool is_negative_cycle;
 };
 
-Floyd_Warshall floyd_warshall_distance(const CSRGraph& graph);
+Floyd_Warshall floyd_warshall_distance(const vector<vector<long long>>& graph);
 
 #endif

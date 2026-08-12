@@ -6,4 +6,4 @@ Distance matrix:
 2 -1 -5 0 -2
 8 5 1 6 0
 Negative cycle: none
-Execution time: 0.003454 ms
+Execution time: 0.004418 ms
