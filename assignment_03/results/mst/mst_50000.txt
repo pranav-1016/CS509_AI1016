@@ -1,0 +1,10 @@
+Test File: mst_50000.txt
+Vertices: 50000
+Edges: 149999
+Kruskal Weight: 1013014
+Prim Weight: 1013014
+Weights Equal: Yes
+Kruskal Time: 19.937082 ms
+Prim Time: 32.885785 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_03/actual/mst/mst_50000_actual.txt"
+Status: PASS
