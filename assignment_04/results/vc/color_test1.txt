@@ -1,0 +1,8 @@
+Test File: color_test1.txt
+Vertices: 5
+Edges: 6
+Colors Used: 3
+Valid Coloring: Yes
+Execution Time: 0.004093 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/vc/color_test1_actual.txt"
+Status: PASS

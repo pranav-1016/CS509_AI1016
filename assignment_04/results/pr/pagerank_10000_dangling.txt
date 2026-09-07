@@ -1,0 +1,12 @@
+Test File: pagerank_10000_dangling.txt
+Vertices: 10000
+Edges: 18000
+Damping: 0.850000
+Tolerance: 0.000001
+Max Iterations: 100
+Iterations: 41
+Converged: Yes
+Sum of Ranks: 1.000000
+Execution Time: 7.009727 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/pr/pagerank_10000_dangling_actual.txt"
+Status: PASS
