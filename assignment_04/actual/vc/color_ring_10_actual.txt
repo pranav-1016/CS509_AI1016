@@ -12,4 +12,4 @@ Vertex colors:
 9 5
 Colors used: 6
 Valid coloring: true
-Execution time: 0.005032 ms
+Execution time: 0.003530 ms

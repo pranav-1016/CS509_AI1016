@@ -49,7 +49,8 @@ struct PageRankInput {
 /*
  * Read a directed unweighted PageRank graph.
  */
-static bool read_input(const fs::path& file, PageRankInput& input) {
+static bool read_input(const fs::path& file, PageRankInput& input)
+{
     ifstream in(file);
 
     if (!in)
@@ -149,7 +150,11 @@ static bool read_input(const fs::path& file, PageRankInput& input) {
     return true;
 }
 
-static bool validate_pagerank(const CSRGraph& graph, const PageRankResult& result) {
+
+static bool validate_pagerank(
+    const CSRGraph& graph,
+    const PageRankResult& result)
+{
     int V = graph.V;
 
     if (static_cast<int>(result.ranks.size()) != V)
@@ -177,6 +182,7 @@ static bool validate_pagerank(const CSRGraph& graph, const PageRankResult& resul
 
     return true;
 }
+
 
 static void write_output(
     const fs::path& file,
@@ -215,7 +221,11 @@ static void write_output(
 /*
  * Run one PageRank test.
  */
-static TestResult run_test(const fs::path& file, const fs::path& root, const AlgorithmConfig& config) {
+static TestResult run_test(
+    const fs::path& file,
+    const fs::path& root,
+    const AlgorithmConfig& config)
+{
     TestResult result{};
 
     result.name = file.filename().string();
@@ -231,6 +241,7 @@ static TestResult run_test(const fs::path& file, const fs::path& root, const Alg
     result.damping = input.damping;
     result.tolerance = input.tolerance;
     result.max_iterations = input.max_iterations;
+
     CSRGraph csr_graph = convert_to_csr(input.graph);
 
     auto start = chrono::steady_clock::now();
@@ -244,7 +255,9 @@ static TestResult run_test(const fs::path& file, const fs::path& root, const Alg
 
     auto end = chrono::steady_clock::now();
 
-    result.execution_time = chrono::duration<double, milli>(end - start).count();
+    result.execution_time =
+        chrono::duration<double, milli>(end - start).count();
+
     result.iterations = pagerank_result.iterations;
     result.converged = pagerank_result.converged;
     result.sum_of_ranks = pagerank_result.sum_of_ranks;
@@ -260,7 +273,7 @@ static TestResult run_test(const fs::path& file, const fs::path& root, const Alg
 
     result.pass = valid;
 
-    
+
     fs::path actual_dir = root / config.directories.actual;
     fs::path results_dir = root / config.directories.results;
 
@@ -268,6 +281,7 @@ static TestResult run_test(const fs::path& file, const fs::path& root, const Alg
     fs::create_directories(results_dir);
 
     string stem = file.stem().string();
+
     fs::path actual_file = actual_dir / (stem + "_actual.txt");
     fs::path result_file = results_dir / (stem + ".txt");
 
@@ -297,8 +311,6 @@ static TestResult run_test(const fs::path& file, const fs::path& root, const Alg
     report << "Actual Output: " << actual_file << '\n';
     report << "Status: " << (result.pass ? "PASS" : "FAIL") << '\n';
 
-
-
     return result;
 }
 
@@ -313,9 +325,7 @@ int pagerank_driver_main(int argc, char* argv[])
     }
 
 
-    /*
-     * Locate Assignment 04 root dynamically.
-     */
+    // Locate Assignment 04 root dynamically.
     fs::path root = fs::current_path();
 
     while (true)
@@ -334,11 +344,6 @@ int pagerank_driver_main(int argc, char* argv[])
 
         root = root.parent_path();
     }
-
-
-    /*
-     * Find PageRank configuration.
-     */
     const AlgorithmConfig* algorithm = nullptr;
 
     for (const auto& config : assignmentConfig.algorithms)
@@ -346,6 +351,7 @@ int pagerank_driver_main(int argc, char* argv[])
         if (config.driver_name == "pagerank_driver")
         {
             algorithm = &config;
+
             break;
         }
     }
@@ -452,35 +458,51 @@ int pagerank_driver_main(int argc, char* argv[])
 
 
     /*
-     * Generate README.
+     * Update only the PageRank section of README.
      */
-    ofstream readme(root / assignmentConfig.readme);
+    fs::path readme_file = root / assignmentConfig.readme;
 
-    if (!readme)
+    ifstream readme_in(readme_file);
+
+    if (!readme_in)
     {
-        cerr << "Error: could not create README.\n";
+        cerr << "Error: could not open README: "
+             << readme_file
+             << '\n';
 
         return 1;
     }
 
+    string readme(
+        (istreambuf_iterator<char>(readme_in)),
+        istreambuf_iterator<char>()
+    );
 
-    readme << "# PageRank Test Results\n\n";
+    readme_in.close();
 
-    readme << "| File | V | E | Damping | "
-              "Tolerance | Iterations | "
-              "Converged | Rank Sum | "
-              "Time | Status |\n";
 
-    readme << "|---|---:|---:|---:|---:|---:|"
-              "---|---:|---:|---:|\n";
+    const string start_marker = "<!-- PAGERANK_RESULTS_START -->";
+    const string end_marker = "<!-- PAGERANK_RESULTS_END -->";
+
+    string section;
+    section += "# PageRank Test Results\n\n";
+
+    section += "| File | V | E | Damping | "
+               "Tolerance | Iterations | "
+               "Converged | Rank Sum | "
+               "Time | Status |\n";
+
+    section += "|---|---:|---:|---:|---:|---:|"
+               "---|---:|---:|---:|\n";
 
 
     bool all_pass = true;
 
     for (const auto& result : results)
     {
-        readme
-            << "| " << result.name
+        ostringstream row;
+
+        row << "| " << result.name
             << " | " << result.vertices
             << " | " << result.edges
             << " | " << fixed
@@ -500,8 +522,76 @@ int pagerank_driver_main(int argc, char* argv[])
             << (result.pass ? "PASS" : "FAIL")
             << " |\n";
 
+        section += row.str();
+
         all_pass &= result.pass;
     }
+
+
+    string::difference_type start =
+        readme.find(start_marker);
+
+    string::difference_type end =
+        readme.find(end_marker);
+
+
+    if (start != string::npos && end != string::npos)
+    {
+        if (start > end)
+        {
+            cerr << "Error: invalid PageRank README markers: "
+                    "start marker appears after end marker.\n";
+
+            return 1;
+        }
+
+        string::difference_type content_start =
+            start + static_cast<string::difference_type>(
+                start_marker.length()
+            );
+
+        readme.replace(
+            content_start,
+            end - content_start,
+            "\n" + section + "\n"
+        );
+    }
+    else if (start == string::npos && end == string::npos)
+    {
+        if (!readme.empty() && readme.back() != '\n')
+        {
+            readme += '\n';
+        }
+
+        readme += "\n";
+        readme += start_marker;
+        readme += "\n";
+        readme += section;
+        readme += end_marker;
+        readme += "\n";
+    }
+    else
+    {
+        cerr << "Error: invalid PageRank README markers. "
+                "Both start and end markers are required.\n";
+
+        return 1;
+    }
+
+
+    ofstream readme_out(readme_file);
+
+    if (!readme_out)
+    {
+        cerr << "Error: could not write README: "
+             << readme_file
+             << '\n';
+
+        return 1;
+    }
+
+    readme_out << readme;
+    readme_out.close();
 
 
     return all_pass ? 0 : 1;

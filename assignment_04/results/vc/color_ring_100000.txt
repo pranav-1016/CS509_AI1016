@@ -3,6 +3,6 @@ Vertices: 100000
 Edges: 300000
 Colors Used: 4
 Valid Coloring: Yes
-Execution Time: 10.475214 ms
+Execution Time: 9.403054 ms
 Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/vc/color_ring_100000_actual.txt"
 Status: PASS

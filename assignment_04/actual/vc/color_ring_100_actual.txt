@@ -102,4 +102,4 @@ Vertex colors:
 99 3
 Colors used: 4
 Valid coloring: true
-Execution time: 0.005005 ms
+Execution time: 0.033392 ms

@@ -7,6 +7,6 @@ Max Iterations: 100
 Iterations: 2
 Converged: Yes
 Sum of Ranks: 1.000000
-Execution Time: 0.002763 ms
+Execution Time: 0.001840 ms
 Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/pr/pagerank_10_actual.txt"
 Status: PASS

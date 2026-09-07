@@ -7,4 +7,4 @@ Vertex colors:
 4 0
 Colors used: 3
 Valid coloring: true
-Execution time: 0.004093 ms
+Execution time: 0.002404 ms

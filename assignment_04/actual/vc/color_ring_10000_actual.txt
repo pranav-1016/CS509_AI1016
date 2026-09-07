@@ -10002,4 +10002,4 @@ Vertex colors:
 9999 3
 Colors used: 4
 Valid coloring: true
-Execution time: 0.655937 ms
+Execution time: 0.824282 ms

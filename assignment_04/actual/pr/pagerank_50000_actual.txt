@@ -50004,4 +50004,4 @@ Vertex ranks:
 Sum of ranks: 1.000000
 Iterations: 16
 Converged: true
-Execution time: 11.405914 ms
+Execution time: 7.113013 ms

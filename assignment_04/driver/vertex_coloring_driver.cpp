@@ -10,6 +10,7 @@
 #include <chrono>
 #include <iomanip>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 namespace fs = filesystem;
@@ -121,10 +122,7 @@ static bool validate_coloring(const CSRGraph& graph, const VertexColoringResult&
 /*
  * Write the complete actual output of one test case.
  */
-static void write_output(
-    const fs::path& file,
-    const VertexColoringResult& result,
-    double execution_time)
+static void write_output(const fs::path& file, const VertexColoringResult& result, double execution_time)
 {
     ofstream out(file);
 
@@ -147,10 +145,7 @@ static void write_output(
 /*
  * Run one Vertex Coloring test.
  */
-static TestResult run_test(
-    const fs::path& file,
-    const fs::path& root,
-    const AlgorithmConfig& config)
+static TestResult run_test(const fs::path& file, const fs::path& root, const AlgorithmConfig& config)
 {
     TestResult result{};
     result.name = file.filename().string();
@@ -202,7 +197,6 @@ static TestResult run_test(
     report << "Edges: " << result.edges << '\n';
     report << "Colors Used: " << result.colors_used << '\n';
     report << "Valid Coloring: " << (result.valid ? "Yes" : "No") << '\n';
-
     report << fixed << setprecision(6);
     report << "Execution Time: " << result.execution_time << " ms\n";
     report << "Actual Output: " << actual_file << '\n';
@@ -324,16 +318,11 @@ int vertex_coloring_driver_main(int argc, char* argv[])
         try
         {
             results.push_back(run_test(file, root, *algorithm));
-
-            cout << "Completed: "
-                 << file.filename()
-                 << '\n';
+            cout << "Completed: " << file.filename() << '\n';
         }
         catch (const exception& e)
         {
-            cerr << "Error: "
-                 << e.what()
-                 << '\n';
+            cerr << "Error: " << e.what() << '\n';
         }
     }
 
@@ -341,38 +330,94 @@ int vertex_coloring_driver_main(int argc, char* argv[])
         return 1;
 
     /*
-     * Generate README.
+     * Update only the Vertex Coloring section of README.
      */
-    ofstream readme(root / assignmentConfig.readme);
+    fs::path readme_file = root / assignmentConfig.readme;
+    ifstream readme_in(readme_file);
 
-    if (!readme)
+    if (!readme_in)
     {
-        cerr << "Error: could not create README.\n";
+        cerr << "Error: could not open README: " << readme_file << '\n';
         return 1;
     }
 
-    readme << "# Vertex Coloring Test Results\n\n";
-    readme << "| File | V | E | Colors Used | "
-              "Valid? | Time | Status |\n";
-    readme << "|---|---:|---:|---:|---|---:|---|\n";
+    string readme((istreambuf_iterator<char>(readme_in)), istreambuf_iterator<char>());
+    readme_in.close();
+
+    const string start_marker = "<!-- VERTEX_COLORING_RESULTS_START -->";
+    const string end_marker = "<!-- VERTEX_COLORING_RESULTS_END -->";
+
+    string section = "# Vertex Coloring Test Results\n\n";
+    section += "| File | V | E | Colors Used | Valid? | Time | Status |\n";
+    section += "|---|---:|---:|---:|---|---:|---|\n";
 
     bool all_pass = true;
 
     for (const auto& result : results)
     {
-        readme << "| " << result.name
-               << " | " << result.vertices
-               << " | " << result.edges
-               << " | " << result.colors_used
-               << " | " << (result.valid ? "Yes" : "No")
-               << " | " << fixed << setprecision(6)
-               << result.execution_time
-               << " ms"
-               << " | " << (result.pass ? "PASS" : "FAIL")
-               << " |\n";
+        ostringstream row;
 
+        row << "| " << result.name
+            << " | " << result.vertices
+            << " | " << result.edges
+            << " | " << result.colors_used
+            << " | " << (result.valid ? "Yes" : "No")
+            << " | " << fixed << setprecision(6)
+            << result.execution_time
+            << " ms"
+            << " | " << (result.pass ? "PASS" : "FAIL")
+            << " |\n";
+
+        section += row.str();
         all_pass &= result.pass;
     }
+
+    string::difference_type start = readme.find(start_marker);
+    string::difference_type end = readme.find(end_marker);
+
+    if (start != string::npos && end != string::npos)
+    {
+        if (start > end)
+        {
+            cerr << "Error: invalid Vertex Coloring README markers: "
+                    "start marker appears after end marker.\n";
+            return 1;
+        }
+
+        string::difference_type content_start =
+            start + static_cast<string::difference_type>(start_marker.length());
+
+        readme.replace(content_start, end - content_start, "\n" + section + "\n");
+    }
+    else if (start == string::npos && end == string::npos)
+    {
+        if (!readme.empty() && readme.back() != '\n')
+            readme += '\n';
+
+        readme += "\n";
+        readme += start_marker;
+        readme += "\n";
+        readme += section;
+        readme += end_marker;
+        readme += "\n";
+    }
+    else
+    {
+        cerr << "Error: invalid Vertex Coloring README markers. "
+                "Both start and end markers are required.\n";
+        return 1;
+    }
+
+    ofstream readme_out(readme_file);
+
+    if (!readme_out)
+    {
+        cerr << "Error: could not write README: " << readme_file << '\n';
+        return 1;
+    }
+
+    readme_out << readme;
+    readme_out.close();
 
     return all_pass ? 0 : 1;
 }
@@ -387,10 +432,7 @@ int main(int argc, char* argv[])
     }
     catch (const exception& e)
     {
-        cerr << "Error: "
-             << e.what()
-             << '\n';
-
+        cerr << "Error: " << e.what() << '\n';
         return 1;
     }
 }
