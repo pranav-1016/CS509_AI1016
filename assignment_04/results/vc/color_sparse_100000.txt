@@ -1,0 +1,8 @@
+Test File: color_sparse_100000.txt
+Vertices: 100000
+Edges: 400000
+Colors Used: 2
+Valid Coloring: Yes
+Execution Time: 9.390487 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/vc/color_sparse_100000_actual.txt"
+Status: PASS

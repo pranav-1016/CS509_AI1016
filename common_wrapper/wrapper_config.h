@@ -25,6 +25,11 @@ inline const std::vector<Assignment> assignments = {
         "Assignment 03 - Minimum Spanning Trees",
         "assignment_03",
         "driver"
+    },
+    {
+        "Assignment 04 - Vertex coloring and Page Rank",
+        "assignment_04",
+        "driver"
     }
     
 };

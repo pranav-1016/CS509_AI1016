@@ -1,0 +1,12 @@
+Test File: pr_test2.txt
+Vertices: 4
+Edges: 5
+Damping: 0.850000
+Tolerance: 0.000100
+Max Iterations: 100
+Iterations: 18
+Converged: Yes
+Sum of Ranks: 1.000000
+Execution Time: 0.003765 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/pr/pr_test2_actual.txt"
+Status: PASS

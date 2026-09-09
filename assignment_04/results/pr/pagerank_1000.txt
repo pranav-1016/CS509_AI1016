@@ -1,0 +1,12 @@
+Test File: pagerank_1000.txt
+Vertices: 1000
+Edges: 3000
+Damping: 0.850000
+Tolerance: 0.000001
+Max Iterations: 100
+Iterations: 18
+Converged: Yes
+Sum of Ranks: 1.000000
+Execution Time: 0.219375 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/pr/pagerank_1000_actual.txt"
+Status: PASS

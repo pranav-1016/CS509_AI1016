@@ -1,0 +1,8 @@
+Test File: color_ring_10.txt
+Vertices: 10
+Edges: 30
+Colors Used: 6
+Valid Coloring: Yes
+Execution Time: 0.003530 ms
+Actual Output: "/mnt/d/GATE 2026/Previous Year Cutoff/IIT Ropar/Sem1/CS509/CS509_AI1016/assignment_04/actual/vc/color_ring_10_actual.txt"
+Status: PASS

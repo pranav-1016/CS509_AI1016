@@ -1,0 +1,15 @@
+Algorithm: Greedy Vertex Coloring
+Vertex colors:
+0 0
+1 1
+2 2
+3 1
+4 0
+5 1
+6 2
+7 0
+8 1
+9 0
+Colors used: 3
+Valid coloring: true
+Execution time: 0.002724 ms
